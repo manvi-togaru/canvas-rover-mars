@@ -1,86 +1,105 @@
-var bi,ri
-canvas=document.getElementById('mycanvas');
-ctx=canvas.getContext('2d')
-marsimage=["mars.jpg","https://ichef.bbci.co.uk/news/976/cpsprodpb/2808/production/_118684201_mars_perseverance_zl0_0036_0670134061_053eby_n0031392zcam03107_1100luj.jpg",
-"https://scitechdaily.com/images/Olympus-Mons-Mars-scaled.jpg","https://www.vaisala.com/sites/default/files/images/LIFT-Mars_3D-illustration_1600x900.jpg"]
-randomnumber=Math.floor(Math.random()*4);
-console.log(randomnumber)
-roverwidth=100;
-roverheight=100;
-roverx=10;
-rovery=10;
-backgroundimage=marsimage[randomnumber];
-roverimage="rover.png"
-function add()
-{
-bi=new Image();
-bi.onload=uploadBackground;
-bi.src=backgroundimage;
-ri=new Image();
-ri.onload=uploadRover;
-ri.src=roverimage;
+canvas = document.getElementById('myCanvas');
+ctx = canvas.getContext("2d");
+
+nasa_mars_images_array = ["download.jpg","PIA17944-MarsCuriosityRover-AfterCrossingDingoGapSanddune-20140209.jpg","mars_surface.jpg","mars_b9ds.jpg"];
+
+random_number = Math.floor(Math.random() * 4);
+console.log(random_number);
+rover_width = 100;
+rover_height = 90;
+
+background_image = nasa_mars_images_array[random_number];
+console.log("background_image = " + background_image);
+rover_image = "rover.png";
+
+rover_x = 10;
+rover_y = 10;
+
+function add() {
+	background_imgTag = new Image(); //defining a variable with a new image
+	background_imgTag.onload = uploadBackground; // setting a function, onloading this variable
+	background_imgTag.src = background_image;   // load image
+
+	rover_imgTag = new Image(); //defining a variable with a new image
+	rover_imgTag.onload = uploadrover; // setting a function, onloading this variable
+	rover_imgTag.src = rover_image;   // load image
 }
-function uploadBackground()
-{
-  ctx.drawImage(bi,0,0,canvas.width,canvas.height)  
+
+function uploadBackground() {
+	ctx.drawImage(background_imgTag, 0, 0, canvas.width, canvas.height);
 }
-function uploadRover()
-{
-  ctx.drawImage(ri,roverx,rovery,roverwidth,roverheight)  
+
+function uploadrover() {
+	ctx.drawImage(rover_imgTag, rover_x, rover_y, rover_width, rover_height);
 }
-window.addEventListener("keydown",my_keydown);
+
+
+window.addEventListener("keydown", my_keydown);
+
 function my_keydown(e)
 {
-keyPressed=e.keyCode;
-console.log(keyPressed)
-if (keyPressed=='38') {
-up();
-console.log("up")
+	keyPressed = e.keyCode;
+	console.log(keyPressed);
+		if(keyPressed == '38')
+		{
+			up();
+			console.log("up");
+		}
+		if(keyPressed == '40')
+		{
+			down();
+			console.log("down");
+		}
+		if(keyPressed == '37')
+		{
+			left();
+			console.log("left");
+		}
+		if(keyPressed == '39')
+		{
+			right();
+			console.log("right");
+		}
 }
-if (keyPressed=='40') {
-    down();
-    console.log("down")
-    }
-if (keyPressed=='37') {
-        left();
-        console.log("left")
-        }
-if (keyPressed=='39') {
-        right();
-        console.log("right")
-            }
-}
+
 function up()
 {
-if (rovery>=0) {
-   rovery=rovery-10;
-   uploadBackground();
-   uploadRover();
-
+	if(rover_y >=0)
+	{
+		rover_y = rover_y - 10;
+		console.log("When up arrow is pressed,  x = " + rover_x + " | y = " +rover_y);
+		 uploadBackground();
+		 uploadrover();
+	}
 }
+function down()
+{
+	if(rover_y <=500)
+	{
+		rover_y =rover_y+ 10;
+		console.log("When down arrow is pressed,  x = " + rover_x + " | y = " +rover_y);
+		uploadBackground();
+		 uploadrover();
+	}
 }
 function left()
 {
-if (roverx>=0) {
-   roverx=roverx-10;
-   uploadBackground();
-   uploadRover();
-   
+	if(rover_x >= 0)
+	{
+		rover_x =rover_x - 10;
+		console.log("When left arrow is pressed,  x = " + rover_x + " | y = " +rover_y);
+		uploadBackground();
+		 uploadrover();
+	}
 }
-}function right()
+function right()
 {
-if (roverx<=700) {
-   roverx=roverx+10;
-   uploadBackground();
-   uploadRover();
-   
+	if(rover_x <= 700)
+	{
+		rover_x =rover_x + 10;
+		console.log("When right arrow is pressed,  x = " + rover_x + " | y = " +rover_y);
+		uploadBackground();
+		uploadrover();
+   }
 }
-}function down()
-{
-if (rovery<=500) {
-   rovery=rovery+10;
-   uploadBackground();
-   uploadRover();
-   
-}
-}
+	
