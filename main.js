@@ -1,7 +1,8 @@
 canvas = document.getElementById('myCanvas');
 ctx = canvas.getContext("2d");
 
-nasa_mars_images_array = ["download.jpg","PIA17944-MarsCuriosityRover-AfterCrossingDingoGapSanddune-20140209.jpg","mars_surface.jpg","mars_b9ds.jpg"];
+nasa_mars_images_array = ["mars.jpg","https://ichef.bbci.co.uk/news/976/cpsprodpb/2808/production/_118684201_mars_perseverance_zl0_0036_0670134061_053eby_n0031392zcam03107_1100luj.jpg",
+"https://scitechdaily.com/images/Olympus-Mons-Mars-scaled.jpg","https://www.vaisala.com/sites/default/files/images/LIFT-Mars_3D-illustration_1600x900.jpg"];
 
 random_number = Math.floor(Math.random() * 4);
 console.log(random_number);
